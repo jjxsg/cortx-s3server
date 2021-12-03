@@ -137,8 +137,7 @@ def main():
     elif args.command == 'upgrade':
       from upgradecmd import UpgradeCmd
       logger.info('upgrade started.')
-      # Uncomment following call once Upgrade is supported.
-      # UpgradeCmd(args.config, args.services, args.commit).process()
+      UpgradeCmd(args.config, args.services, args.commit).process()
       logger.info('upgrade successful.')
 
   except Exception as e:
