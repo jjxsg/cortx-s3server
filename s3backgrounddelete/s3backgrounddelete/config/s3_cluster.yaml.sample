@@ -19,3 +19,4 @@
 
 cluster_config:                                       # Section for cluster config
    cluster_id: "3f670dd0-17cf-4ef3-9d8b-e1fb6a14c0f6" # Default version for cluster id.
+   cluster_dummy: "cluster_val"

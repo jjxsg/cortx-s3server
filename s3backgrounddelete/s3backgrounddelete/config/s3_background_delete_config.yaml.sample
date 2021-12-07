@@ -18,7 +18,7 @@
 #
 
 version_config:                             # Section for version of S3 background delete config
-   version: 1                                              # Default version for S3 background delete config
+   version: 2                                              # Default version for S3 background delete config
 
 cortx_s3:                                   # Section for S3 background delete config
    producer_endpoint: "http://127.0.0.1:28049"              # Service specified for CORTX s3 producer
@@ -27,7 +27,8 @@ cortx_s3:                                   # Section for S3 background delete c
    default_region: "us-west2"                              # CORTX s3 client will use the specified host
    daemon_mode: True                                       # S3background process run in daemon mode and ST's run in non-daemon mode.
    messaging_platform: "message_bus"                       # messaging platform
-   scheduler_schedule_interval: 600                       # Schedule Interval is time period at which object recovery scheduler will be executed (in seconds). Increasing this value leads to reduced memory consumption.
+   scheduler_schedule_interval: 100                       # Schedule Interval is time period at which object recovery scheduler will be executed (in seconds). Increasing this value leads to reduced memory consumption.
+   cortx_s3_dummy: "cortx_s3_val"
    
 message_bus:
    topic: "bgdelete"
@@ -38,6 +39,7 @@ message_bus:
    consumer_sleep: 5
    purge_sleep: 0
    admin_id: "admin_s3_background_delete"
+   message_bus_dummy: "message_bus_val"
 
 logconfig:                                  # Section for scheduler & processor loggers.
 
@@ -54,6 +56,7 @@ logconfig:                                  # Section for scheduler & processor 
    log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"                         # Sets the specifed log format https://docs.python.org/3/library/logging.html#logging.Formatter
    max_bytes: 5242880                                                                         # Max size of a log files is set to 5mb
    backup_count: 5                                                                            # Max number of log files that can exist
+   logconfig_dummy: "logconfig_val"
 
 indexid:
 
@@ -63,11 +66,13 @@ indexid:
    bucket_metadata_index_id: "AAAAAAAAAHg=-AgAQAAAAAAA="      # Index id containing bucket metadata
    max_keys: 500                                             # Maximum number of keys in global index to be queried from list of probable delete object oid.
    threshold : 0                                              # Threshold value for Maximum number of messages allowed to be in queue before before we purge and reload the queue
+   indexid_dummy: "indexid_val"
 
 leakconfig:                                  # Section for object leak config
    leak_processing_delay_in_mins: 15                          # Time delay in mins after which probable delete entry is procesed for leak.
    version_processing_delay_in_mins: 5                        # Time delay in mins after which object version is processed
    cleanup_enabled: False                                     # Flag for cleanup during S3 instance non-active.
+   leakconfig_dummy: "leakconfig_val"
 
 #DO NOT CHANGE ANY KEY NAME
 background_delete_account:
@@ -78,3 +83,4 @@ background_delete_account:
    s3_user_id: "450"                                          #BG delete account user id
    const_cipher_secret_str: "s3backgroundsecretkey"           #BG delete account secret key
    const_cipher_access_str: "s3backgroundaccesskey"           #BG delete account access key
+   background_delete_account_dummy: "background_delete_account_val"

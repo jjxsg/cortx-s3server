@@ -86,11 +86,13 @@ S3_SERVER_CONFIG:                                       # Section for S3 Server
    S3_BUCKET_METADATA_CACHE_MAX_SIZE: 10000             # Max count of entries in bucket MD cache
    S3_BUCKET_METADATA_CACHE_EXPIRE_SEC: 5               # Expiration time for bucket metadata in cache
    S3_BUCKET_METADATA_CACHE_REFRESH_SEC: 4              # Refresh timeout. After this timeout proactive MD re-load will happen.
+   S3_SERVER_CONFIG_DUMMY_KEY: "S3_SERVER_CONFIG_DUMMY_VAL"
 S3_AUTH_CONFIG:                                         # Section for S3 Auth Service
    S3_AUTH_IP_ADDR: 127.0.0.1                           # Auth server IP address Should be in below format:
                                                         # ipv4 address format: 127.0.0.1
                                                         # ipv6 address format: ::1
    S3_AUTH_PORT: 28050                                  # Auth server port for https request
+   S3_AUTH_CONFIG_DUMMY_KEY: "S3_AUTH_CONFIG_DUMMY_VAL"
 S3_MOTR_CONFIG:                                     # Section for S3 Motr
    S3_MOTR_LOCAL_ADDR: <ipaddress>@tcp:12345:33:100   # Motr end points, replace <ipaddress> with host's ip address
    S3_MOTR_HA_ADDR: <ipaddress>@tcp:12345:34:1        # Motr end point, replace <ipaddress> with host's ip address
@@ -121,6 +123,7 @@ S3_MOTR_CONFIG:                                     # Section for S3 Motr
    S3_MOTR_SLEEP_DURING_RECONNECT: 4                 # Time in seconds
    S3_MOTR_RECONNECT_RETRY_COUNT: 15                 # No of times s3 will try to retry connection to motr.
    S3_MOTR_INIT_MAX_TIMEOUT: 120                      # Motr init retry interval.
+   S3_MOTR_CONFIG_DUMMY_KEY: "S3_MOTR_CONFIG_DUMMY_VAL"
 S3_THIRDPARTY_CONFIG:
    S3_LIBEVENT_POOL_BUFFER_SIZE: 16384                  # Pool buffer size, in case of S3_MOTR_UNIT_SIZE of size 1MB, it is recommended to have S3_LIBEVENT_POOL_BUFFER_SIZE of size 16384
    S3_LIBEVENT_MAX_READ_SIZE: 16384                     # Maximum read in a single read operation, as per libevent documentation in code, user should not try to read more than this value
@@ -130,5 +133,7 @@ S3_THIRDPARTY_CONFIG:
    S3_LIBEVENT_POOL_RESERVE_SIZE: 134217728             # 128MB, deny PUT request if mempool free space is less than the mentioned size in bytes
    S3_LIBEVENT_MEMPOOL_ZERO_BUFFER: false               # Enable Libevent Mempool 'zeroing' after use (like secure erase) - disabled by default
    S3_LIBEVENT_POOL_RESERVE_PERCENT: 5                  # 5%, deny PUT request if mempool free space in percent is less than the mentioned percent
+   S3_LIBEVENT_DUMMY_KEY: "S3_LIBEVENT_DUMMY_VAL"
 S3_VERSION_CONFIG:
-   VERSION: 1
+   VERSION: 2
+   S3_VERSION_CONFIG_DUMMY_KEY: "S3_VERSION_CONFIG_DUMMY_VAL"

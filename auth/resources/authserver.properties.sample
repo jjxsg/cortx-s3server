@@ -16,7 +16,7 @@
 # For any questions about this software or licensing,
 # please email opensource@seagate.com or cortx-questions@seagate.com.
 #
-version=1
+version=2
 #Server Properties
 nettyBossGroupThreads=1
 nettyWorkerGroupThreads=8
@@ -82,4 +82,5 @@ RsyslogHostname=127.0.0.1
 RsyslogPort=514
 # Rsyslog msgid to filter messages for S3AuthServer
 RsyslogMsgId=s3authserver-audit-logging
+DummyKey=DummyVal
 
