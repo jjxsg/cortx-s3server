@@ -135,5 +135,5 @@ S3_THIRDPARTY_CONFIG:
    S3_LIBEVENT_POOL_RESERVE_PERCENT: 5                  # 5%, deny PUT request if mempool free space in percent is less than the mentioned percent
    S3_LIBEVENT_DUMMY_KEY: "S3_LIBEVENT_DUMMY_VAL"
 S3_VERSION_CONFIG:
-   VERSION: 1
+   VERSION: 2
    S3_VERSION_CONFIG_DUMMY_KEY: "S3_VERSION_CONFIG_DUMMY_VAL"

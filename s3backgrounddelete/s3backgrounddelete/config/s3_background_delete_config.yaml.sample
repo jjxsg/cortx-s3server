@@ -18,7 +18,7 @@
 #
 
 version_config:                             # Section for version of S3 background delete config
-   version: 1                                              # Default version for S3 background delete config
+   version: 2                                              # Default version for S3 background delete config
 
 cortx_s3:                                   # Section for S3 background delete config
    producer_endpoint: "http://127.0.0.1:28049"              # Service specified for CORTX s3 producer
