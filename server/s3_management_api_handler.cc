@@ -22,6 +22,7 @@
 #include "s3_api_handler.h"
 #include "s3_account_delete_metadata_action.h"
 #include "s3_get_audit_log_schema_action.h"
+#include "s3_bucket_remote_add_action.h"
 
 void S3ManagementAPIHandler::create_action() {
   s3_log(S3_LOG_DEBUG, request_id, "%s Entry", __func__);
@@ -46,6 +47,22 @@ void S3ManagementAPIHandler::create_action() {
           // should never be here.
           return;
       };
+      break;
+    case S3OperationCode::replication:
+      switch (request->http_verb()) {
+        case S3HttpVerb::GET:
+          // s3_stats_inc("get_bucket_encryption_count");
+          break;
+        case S3HttpVerb::PUT:
+          action = std::make_shared<S3BucketRemoteAddAction>(request);
+          s3_log(S3_LOG_DEBUG, request_id, "S3BucketRemoteAddAction");
+          break;
+        case S3HttpVerb::DELETE:
+          // s3_stats_inc("delete_bucket_encryption_count");
+          break;
+        default:
+          return;
+      }
       break;
     default:
       // should never be here.
