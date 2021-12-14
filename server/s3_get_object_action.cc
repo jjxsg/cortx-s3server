@@ -760,6 +760,26 @@ void S3GetObjectAction::read_object_data() {
     } else {
       blocks_to_read = total_blocks_to_read - blocks_already_read;
     }
+    // Below is only for first block read op and non-zero block start offset.
+    // For the first block read op, if reading starts from non-zero offset
+    // adjust number of 'blocks_to_read', so that the read does not go
+    // beyond the object size.
+    if (blocks_already_read == 0 && (motr_reader->get_last_index() != 0)) {
+      size_t unit_size_of_object_with_first_byte =
+          S3MotrLayoutMap::get_instance()->get_unit_size_for_layout(
+              extended_objects[next_fragment_object].object_layout);
+      // Number of initial blocks skipped
+      size_t blocks_skipped =
+          motr_reader->get_last_index() / unit_size_of_object_with_first_byte;
+      // Make sure blocks_to_read is not going beyond the object size
+      size_t effective_blocks_in_object =
+          extended_objects[next_fragment_object].total_blocks_in_object -
+          blocks_skipped;
+      if (blocks_to_read > effective_blocks_in_object) {
+        blocks_to_read = effective_blocks_in_object;
+      }
+    }
+
     s3_log(S3_LOG_DEBUG, request_id, "blocks_to_read: (%zu)\n", blocks_to_read);
 
     if (blocks_to_read > 0) {
